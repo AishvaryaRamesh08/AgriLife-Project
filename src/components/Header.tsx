@@ -28,9 +28,10 @@ interface HeaderProps {
   onToggleReviewerMode: () => void;
   farmSettings: MyFarmSettings;
   onOpenFarmSettings: () => void;
-  currentView: 'feed' | 'article' | 'researcher-dashboard';
+  currentView: 'feed' | 'article' | 'researcher-dashboard' | 'about';
   onNavigateFeed: () => void;
   onNavigateDashboard: () => void;
+  onNavigateAbout: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -49,6 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   currentView,
   onNavigateFeed,
   onNavigateDashboard,
+  onNavigateAbout,
 }) => {
   const [showUniDropdown, setShowUniDropdown] = useState(false);
   const [showControlsDrawer, setShowControlsDrawer] = useState(false);
@@ -95,6 +97,16 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               {language === 'es' ? 'Artículos y Feed' : 'Research Feed'}
+            </button>
+            <button
+              type="button"
+              onClick={onNavigateAbout}
+              aria-current={currentView === 'about' ? 'page' : undefined}
+              className={`hover:text-white transition-colors pb-1 border-b-2 ${
+                currentView === 'about' ? 'border-white text-white' : 'border-transparent text-stone-200'
+              }`}
+            >
+              {language === 'es' ? 'Acerca de' : 'About'}
             </button>
             <button
               type="button"
@@ -293,6 +305,17 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <MapPin className="w-3.5 h-3.5" />
                 <span>{farmSettings.county} Co.</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowControlsDrawer(false);
+                  onNavigateAbout();
+                }}
+                className="text-stone-100 underline font-semibold py-1"
+              >
+                {language === 'es' ? 'Acerca del proyecto' : 'About the project'}
               </button>
 
               {reviewerMode && (

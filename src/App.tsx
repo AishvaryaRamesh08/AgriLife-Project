@@ -9,6 +9,7 @@ import { Footer } from './components/Footer';
 import { VoiceInputButton } from './components/VoiceInputButton';
 import { GlobalFloatingChatbot } from './components/GlobalFloatingChatbot';
 import { AiKeyDialog } from './components/AiKeyDialog';
+import { AboutPage } from './components/AboutPage';
 import { INSTITUTION_CONFIG, getArticles, searchArticles } from './services/researchApi';
 import { Article, TexasCounty, MyFarmSettings } from './types/research';
 import { Search, Filter, X, Sparkles, Sprout, ArrowUpDown } from 'lucide-react';
@@ -40,7 +41,7 @@ export default function App() {
   const [isFarmModalOpen, setIsFarmModalOpen] = useState(false);
 
   // Navigation State
-  const [currentView, setCurrentView] = useState<'feed' | 'article' | 'researcher-dashboard'>('feed');
+  const [currentView, setCurrentView] = useState<'feed' | 'article' | 'researcher-dashboard' | 'about'>('feed');
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   // Articles & Search State
@@ -124,6 +125,18 @@ export default function App() {
       : 'text-size-normal';
 
   const rootContrastClass = highContrast ? 'high-contrast' : '';
+
+  const handleNavigateAbout = () => {
+    setCurrentView('about');
+    setSelectedArticle(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateFeed = () => {
+    setCurrentView('feed');
+    setSelectedArticle(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleSelectArticle = (art: Article) => {
     setSelectedArticle(art);
@@ -212,6 +225,7 @@ export default function App() {
           setCurrentView('researcher-dashboard');
           setSelectedArticle(null);
         }}
+        onNavigateAbout={handleNavigateAbout}
       />
 
       {/* Main Content Area */}
@@ -467,6 +481,16 @@ export default function App() {
           />
         )}
 
+        {/* About the Project View */}
+        {currentView === 'about' && (
+          <AboutPage
+            language={language}
+            lowDataMode={lowDataMode}
+            onBrowseResearch={handleNavigateFeed}
+            onOpenChat={() => setIsChatOpen(true)}
+          />
+        )}
+
         {/* Researcher Dashboard View */}
         {currentView === 'researcher-dashboard' && (
           <ResearcherDashboard
@@ -482,7 +506,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer language={language} />
+      <Footer language={language} onNavigateAbout={handleNavigateAbout} />
 
       {/* Global Floating Research Chatbot */}
       <GlobalFloatingChatbot

@@ -4,9 +4,10 @@ import { INSTITUTION_CONFIG } from '../services/researchApi';
 
 interface FooterProps {
   language: 'en' | 'es';
+  onNavigateAbout?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ language }) => {
+export const Footer: React.FC<FooterProps> = ({ language, onNavigateAbout }) => {
   return (
     <footer className="bg-[#500000] text-white border-t-4 border-[#3b0000] mt-16 no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
@@ -29,6 +30,15 @@ export const Footer: React.FC<FooterProps> = ({ language }) => {
                   : 'Strict Grounding: No Invented Rates or Data'}
               </span>
             </div>
+            {onNavigateAbout && (
+              <button
+                type="button"
+                onClick={onNavigateAbout}
+                className="text-xs font-semibold text-white underline underline-offset-2 hover:text-amber-300"
+              >
+                {language === 'es' ? 'Acerca del proyecto' : 'About the project'}
+              </button>
+            )}
           </div>
 
           {/* Col 2: Land-Grant & Extension Directory */}
