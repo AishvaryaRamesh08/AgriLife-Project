@@ -484,7 +484,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              {language === 'es' ? 'Para el Agricultor (Directo)' : 'Farmer-Friendly (8th-Grade)'}
+              {language === 'es' ? 'Para el Agricultor (Directo)' : 'Farmer-Friendly'}
             </button>
             <button
               type="button"
