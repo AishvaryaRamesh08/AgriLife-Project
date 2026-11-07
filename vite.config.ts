@@ -3,8 +3,11 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   return {
+    // GitHub Pages serves the site from /<repo>/, so the static build uses
+    // relative asset URLs. The app has no URL routes, so this is all it needs.
+    base: mode === 'pages' ? './' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useSyncExternalStore } from 'react';
 import {
   Globe,
   Sliders,
@@ -9,8 +9,10 @@ import {
   Building2,
   MapPin,
   ExternalLink,
+  KeyRound,
 } from 'lucide-react';
 import { INSTITUTION_CONFIG } from '../services/researchApi';
+import { STATIC_AI, hasKey, openKeyDialog, subscribeKey } from '../services/aiClient';
 import { MyFarmSettings } from '../types/research';
 
 interface HeaderProps {
@@ -50,6 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [showUniDropdown, setShowUniDropdown] = useState(false);
   const [showControlsDrawer, setShowControlsDrawer] = useState(false);
+  const aiKeySaved = useSyncExternalStore(subscribeKey, hasKey, () => false);
 
   const selectedUni = INSTITUTION_CONFIG.universities[0];
 
@@ -258,6 +261,27 @@ export const Header: React.FC<HeaderProps> = ({
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>{language === 'es' ? 'Modo Revisor' : 'Reviewer Mode'}</span>
               </button>
+
+              {/* Gemini key (static GitHub Pages build only) */}
+              {STATIC_AI && (
+                <button
+                  type="button"
+                  onClick={() => openKeyDialog()}
+                  className={`min-h-[38px] px-3 rounded-md font-bold flex items-center gap-1.5 transition-colors ${
+                    aiKeySaved
+                      ? 'bg-emerald-400 text-stone-950 font-black'
+                      : 'bg-white/10 hover:bg-white/20 text-white'
+                  }`}
+                  title="Your own Gemini API key, stored only in this browser"
+                >
+                  <KeyRound className="w-3.5 h-3.5" />
+                  <span>
+                    {aiKeySaved
+                      ? language === 'es' ? 'Clave de IA: activa' : 'AI key: on'
+                      : language === 'es' ? 'Clave de IA' : 'AI key'}
+                  </span>
+                </button>
+              )}
             </div>
 
             {/* Mobile quick links */}

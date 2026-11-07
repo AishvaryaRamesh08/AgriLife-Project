@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Article, TexasCounty, MyFarmSettings } from '../types/research';
 import { VoiceInputButton } from './VoiceInputButton';
+import { askChat, analyzePhoto, ensureAiReady } from '../services/aiClient';
 
 interface GlobalFloatingChatbotProps {
   currentArticle: Article | null;
@@ -165,6 +166,8 @@ WEATHER GUIDANCE: ${a.weather_guidance?.rule || 'None specified'}`
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || input).trim();
     if (!query && !photoBase64) return;
+    // Static (GitHub Pages) build: asks for the visitor's Gemini key first.
+    if (!(await ensureAiReady())) return;
 
     // Handle Photo upload branch
     if (photoBase64) {
@@ -193,23 +196,17 @@ WEATHER GUIDANCE: ${a.weather_guidance?.rule || 'None specified'}`
       setLoading(true);
 
       try {
-        const res = await fetch('/api/gemini/photo-analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            imageBase64: base64ToSend,
-            mimeType: mimeToSend,
-            availableArticles: allArticles.map((a) => ({
-              id: a.id,
-              title: a.title,
-              crops: a.crops,
-              topics: a.topics,
-            })),
-            language,
-          }),
+        const data = await analyzePhoto({
+          imageBase64: base64ToSend,
+          mimeType: mimeToSend,
+          availableArticles: allArticles.map((a) => ({
+            id: a.id,
+            title: a.title,
+            crops: a.crops,
+            topics: a.topics,
+          })),
+          language,
         });
-
-        const data = await res.json();
         setMessages((prev) => [
           ...prev,
           {
@@ -253,7 +250,7 @@ WEATHER GUIDANCE: ${a.weather_guidance?.rule || 'None specified'}`
     setLoading(true);
 
     try {
-      const payload: Record<string, any> = {
+      const payload: Parameters<typeof askChat>[0] = {
         extensionOfficeUrl: county.extensionOfficeUrl,
         userMessage: query,
         language,
@@ -270,13 +267,7 @@ WEATHER GUIDANCE: ${a.weather_guidance?.rule || 'None specified'}`
         payload.libraryCorpus = buildLibraryCorpus();
       }
 
-      const res = await fetch('/api/gemini/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
+      const data = await askChat(payload);
       const replyText =
         data.reply ||
         data.fallback ||

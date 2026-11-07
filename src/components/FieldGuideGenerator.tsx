@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Compass, CheckCircle2, AlertTriangle, XCircle, Calendar, Sparkles, RefreshCw, ThermometerSun } from 'lucide-react';
 import { Article, TexasCounty, MyFarmSettings } from '../types/research';
 import { INSTITUTION_CONFIG } from '../services/researchApi';
+import { ensureAiReady, generateFieldGuide } from '../services/aiClient';
 
 interface FieldGuideGeneratorProps {
   article: Article;
@@ -31,27 +32,32 @@ export const FieldGuideGenerator: React.FC<FieldGuideGeneratorProps> = ({
   );
   const [loading, setLoading] = useState(false);
   const [guide, setGuide] = useState<FieldGuideResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const generateGuide = async () => {
+    if (!(await ensureAiReady())) return;
     setLoading(true);
+    setError(null);
     try {
-      const res = await fetch('/api/gemini/field-guide', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleText: article.full_text,
-          articleTitle: article.title,
-          county: selectedCounty,
-          crop: selectedCrop,
-          language,
-        }),
+      const data = await generateFieldGuide({
+        articleText: article.full_text,
+        articleTitle: article.title,
+        county: selectedCounty,
+        crop: selectedCrop,
+        language,
       });
-      const data = await res.json();
       if (data.fieldGuide) {
         setGuide(data.fieldGuide);
+      } else if (data.error) {
+        setError(data.error);
       }
     } catch (err) {
       console.error('Failed to generate localized field guide:', err);
+      setError(
+        language === 'es'
+          ? 'No se pudo generar la guía. Intente de nuevo.'
+          : "Couldn't generate the guide. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -140,6 +146,12 @@ export const FieldGuideGenerator: React.FC<FieldGuideGeneratorProps> = ({
             : `Generate Field Guide for ${selectedCounty} Co. (${selectedCrop})`}
         </span>
       </button>
+
+      {error && (
+        <p role="alert" className="-mt-2 mb-4 text-sm font-semibold text-red-700">
+          {error}
+        </p>
+      )}
 
       {/* Results View */}
       {guide && (

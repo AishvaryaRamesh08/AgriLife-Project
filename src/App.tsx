@@ -8,6 +8,7 @@ import { ResearcherDashboard } from './components/ResearcherDashboard';
 import { Footer } from './components/Footer';
 import { VoiceInputButton } from './components/VoiceInputButton';
 import { GlobalFloatingChatbot } from './components/GlobalFloatingChatbot';
+import { AiKeyDialog } from './components/AiKeyDialog';
 import { INSTITUTION_CONFIG, getArticles, searchArticles } from './services/researchApi';
 import { Article, TexasCounty, MyFarmSettings } from './types/research';
 import { Search, Filter, X, Sparkles, Sprout, ArrowUpDown } from 'lucide-react';
@@ -494,6 +495,9 @@ export default function App() {
         onToggleOpen={() => setIsChatOpen((prev) => !prev)}
         onSelectArticle={handleSelectArticle}
       />
+
+      {/* Gemini key prompt (static GitHub Pages build only; renders nothing otherwise) */}
+      <AiKeyDialog language={language} />
 
       {/* My Farm Settings Modal */}
       <MyFarmModal

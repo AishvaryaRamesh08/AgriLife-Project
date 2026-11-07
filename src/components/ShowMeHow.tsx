@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Wrench, Video, AlertCircle, Sparkles, CheckCircle2, Play, RefreshCw } from 'lucide-react';
 import { Article, TechniqueStep } from '../types/research';
 import heroImg from '../assets/images/hero_texas_agriculture_1794072805147.jpg';
+import { ensureAiReady, extractTechniqueSteps } from '../services/aiClient';
 
 interface ShowMeHowProps {
   article: Article;
@@ -16,24 +17,25 @@ export const ShowMeHow: React.FC<ShowMeHowProps> = ({
 }) => {
   const [steps, setSteps] = useState<TechniqueStep[]>(article.technique_steps || []);
   const [loadingSteps, setLoadingSteps] = useState(false);
+  const [stepsError, setStepsError] = useState<string | null>(null);
   const [videoStatus, setVideoStatus] = useState<'idle' | 'generating' | 'ready' | 'fallback'>('idle');
   const [videoProgress, setVideoProgress] = useState(0);
 
   const handleExtractWithGemini = async () => {
+    if (!(await ensureAiReady())) return;
     setLoadingSteps(true);
+    setStepsError(null);
     try {
-      const res = await fetch('/api/gemini/technique-steps', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleText: article.full_text,
-          articleTitle: article.title,
-          language,
-        }),
+      const data = await extractTechniqueSteps({
+        articleText: article.full_text,
+        articleTitle: article.title,
+        language,
       });
-      const data = await res.json();
       if (data.sufficient_detail && Array.isArray(data.steps) && data.steps.length > 0) {
         setSteps(data.steps);
+      } else if (data.error) {
+        // Keep the verified steps on screen; just say why they didn't refresh.
+        setStepsError(data.error);
       }
     } catch (err) {
       console.warn("Failed to extract technique steps via Gemini, preserving verified steps:", err);
@@ -117,6 +119,12 @@ export const ShowMeHow: React.FC<ShowMeHowProps> = ({
           </button>
         </div>
       </div>
+
+      {stepsError && (
+        <p role="alert" className="-mt-2 mb-4 text-sm font-semibold text-red-700">
+          {stepsError}
+        </p>
+      )}
 
       {/* Video Generation Simulation / Player */}
       {!lowDataMode && videoStatus !== 'idle' && (
