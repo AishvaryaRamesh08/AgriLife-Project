@@ -68,18 +68,18 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-40 bg-[#500000] text-white shadow-md border-b border-[#3b0000]">
       {/* Main Top Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 gap-4">
-          {/* Brand Zone */}
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between h-16 gap-3 sm:gap-4">
+          {/* Brand Zone (min-w-0 + truncate let it shrink on phones instead of overflowing) */}
+          <div className="flex items-center gap-3 min-w-0">
             <button
               type="button"
               onClick={onNavigateFeed}
-              className="text-left focus-visible:outline-2 focus-visible:outline-white rounded-lg p-1"
+              className="text-left focus-visible:outline-2 focus-visible:outline-white rounded-lg p-1 min-w-0 max-w-full"
             >
-              <div className="text-xl sm:text-2xl font-black tracking-tight leading-none text-white whitespace-nowrap">
+              <div className="text-base min-[380px]:text-lg sm:text-2xl font-black tracking-tight leading-none text-white whitespace-nowrap truncate">
                 AgriLife Research-to-Field
               </div>
-              <div className="text-[11px] sm:text-xs text-stone-200 font-medium tracking-wide mt-0.5">
+              <div className="text-[11px] sm:text-xs text-stone-200 font-medium tracking-wide mt-0.5 truncate">
                 {language === 'es'
                   ? 'Investigación de Texas A&M, hecha práctica.'
                   : 'Texas A&M research, made practical.'}
@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-stone-100">
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-stone-100">
             <button
               type="button"
               onClick={onNavigateFeed}
@@ -145,8 +145,8 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Primary Quick Controls */}
           <div className="flex items-center gap-2 shrink-0">
-            {/* University Switcher */}
-            <div className="relative">
+            {/* University Switcher (hidden on phones: only one university is active so far) */}
+            <div className="relative hidden sm:block">
               <button
                 type="button"
                 onClick={() => setShowUniDropdown(!showUniDropdown)}
@@ -297,7 +297,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Mobile quick links */}
-            <div className="flex md:hidden items-center gap-2 pt-1 border-t border-white/10 w-full justify-between">
+            <div className="flex lg:hidden flex-wrap items-center gap-x-4 gap-y-1 pt-1 border-t border-white/10 w-full">
               <button
                 type="button"
                 onClick={onOpenFarmSettings}
