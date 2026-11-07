@@ -1,0 +1,8 @@
+{
+  "name": "Remix AgriLife Research-to-Field",
+  "description": "Texas A\u0026M agricultural research made practical for Texas farmers, ranchers, and land stewards with plain-language summaries, weather guidance, and field recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

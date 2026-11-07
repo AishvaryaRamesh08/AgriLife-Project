@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+/* Text Size overrides for accessibility */
+.text-size-normal {
+  font-size: 16px;
+}
+
+.text-size-large {
+  font-size: 18px;
+}
+
+.text-size-xlarge {
+  font-size: 20px;
+}
+
+/* High Contrast Mode for sunlight & vision assistance */
+.high-contrast {
+  --tw-border-opacity: 1;
+  color: #000000 !important;
+}
+
+.high-contrast .card-surface {
+  background-color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+.high-contrast button {
+  border: 2px solid #000000 !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast a {
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+}
+
+/* Print Field Guide Styles */
+@media print {
+  header, footer, nav, .no-print, button, input, select {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+  }
+  .printable-field-guide {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
