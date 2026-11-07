@@ -5,6 +5,13 @@
  */
 
 import { Article, TexasCounty } from '../types/research';
+// Images must be imported (not referenced as "/src/..." strings) so Vite
+// bundles them into dist/ and resolves the path against the deploy base.
+import cottonIrrigationImg from '../assets/images/cotton_irrigation_field_1794072806153.jpg';
+import cattlePastureImg from '../assets/images/texas_cattle_pasture_1794072808863.jpg';
+import soilHealthImg from '../assets/images/soil_health_covercrop_1794072806988.jpg';
+import sorghumImg from '../assets/images/grain_sorghum_crop_1794072807359.jpg';
+import heroImg from '../assets/images/hero_texas_agriculture_1794072805147.jpg';
 
 export const INSTITUTION_CONFIG = {
   name: "Texas A&M AgriLife Research & Extension",
@@ -164,7 +171,7 @@ CAUTIONS: If heat index exceeds 102°F during peak bloom for more than 4 consecu
     has_technique: true,
     review_status: "reviewed",
     reviewer_name: "Dr. Jourdan Bell, AgriLife Extension Agronomist",
-    image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg",
+    image_url: cottonIrrigationImg,
     takeaway: "Holding back water during early growth and pouring it on during bloom saved 20% on water bills while keeping cotton yields high.",
     spanish_takeaway: "Ahorrar agua al principio del crecimiento y aplicarla durante la floración ahorró 20% en agua manteniendo un alto rendimiento de algodón.",
     plain_summary: {
@@ -201,28 +208,28 @@ CAUTIONS: If heat index exceeds 102°F during peak bloom for more than 4 consecu
         title: "Check Pre-Bloom Soil Moisture",
         description: "Verify that soil moisture at the 12-inch depth is above 40% available water capacity. Withhold heavy irrigation while plants develop taproots.",
         caution: "Do not stress seedlings if topsoil crusting prevents root elongation.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       },
       {
         step_number: 2,
         title: "Identify First Flower (Bloom Start)",
         description: "Scout fields twice weekly. Mark the date when at least 50% of plants show their first white flower in the mid-canopy.",
         caution: "Bloom window starts the 35-day critical irrigation clock.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       },
       {
         step_number: 3,
         title: "Ramp Irrigation to 75% ET Replacement",
         description: "Increase pivot or drip schedule to replace 75% of calculated crop water demand during the 35-day flowering to peak boll fill window.",
         caution: "If daytime winds exceed 20 mph, shift pivot run to 8:00 PM - 8:00 AM.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       },
       {
         step_number: 4,
         title: "Taper Water 30 Days Before Defoliation",
         description: "Cut back water once upper bolls have formed and hardened to encourage natural cutout and boll opening.",
         caution: "Late over-watering promotes regrowth and degrades fiber quality.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       }
     ],
     glossary_terms: [
@@ -270,7 +277,7 @@ FERTILITY: Splitting nitrogen applications (50 lbs N/acre in spring, 50 lbs afte
     has_technique: true,
     review_status: "reviewed",
     reviewer_name: "Dr. Larry Redmon, State Forage Specialist",
-    image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg",
+    image_url: cattlePastureImg,
     takeaway: "Rotating cows between 4 pasture sections and pulling them off when grass hits 4 inches keeps cattle gaining weight and saves roots through dry summers.",
     spanish_takeaway: "Rotar el ganado entre 4 potreros y retirarlo cuando el pasto baje a 4 pulgadas mantiene el peso del ganado y protege las raíces en sequía.",
     plain_summary: {
@@ -306,28 +313,28 @@ FERTILITY: Splitting nitrogen applications (50 lbs N/acre in spring, 50 lbs afte
         title: "Measure Pasture Height with a Ruler",
         description: "Walk the pasture and check grass height in 10 random spots. Only turn cattle in when Tifton 85 bermudagrass is 8 to 10 inches tall.",
         caution: "Do not guess from the pickup window—walk the paddock.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       },
       {
         step_number: 2,
         title: "Divide Pasture into 4 or More Paddocks",
         description: "Use single-strand high-tensile or polywire electric fence with a solar energizer to create cross-fenced paddocks.",
         caution: "Ensure every paddock has reliable shade and clean livestock water.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       },
       {
         step_number: 3,
         title: "Graze Down to Exactly 4 Inches",
         description: "Move the herd to the next paddock as soon as average grass height reaches 4 inches (roughly the height of a soda can standing upright).",
         caution: "Pull cows out immediately if grass drops toward 3 inches.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       },
       {
         step_number: 4,
         title: "Rest for 21 to 28 Days",
         description: "Allow the grazed paddock 3 to 4 full weeks to rebuild root energy stores before bringing cattle back.",
         caution: "If drought stalls grass growth, feed hay in a sacrifice lot rather than over-grazing.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       }
     ],
     glossary_terms: [
@@ -375,7 +382,7 @@ CRITICAL TERMINATION TIMING: Cover crops must be terminated with glyphosate or r
     has_technique: true,
     review_status: "reviewed",
     reviewer_name: "Dr. Ronnie Schnell, Extension Cropping Systems Agronomist",
-    image_url: "/src/assets/images/soil_health_covercrop_1794072806988.jpg",
+    image_url: soilHealthImg,
     takeaway: "Planting a mix of cereal rye, clover, and radish choked out 74% of summer weeds and helped heavy clay soak up nearly 50% more spring rain.",
     spanish_takeaway: "Sembrar una mezcla de centeno, trébol y rábano redujo 74% de malezas y permitió que la arcilla absorbiera 50% más lluvia de primavera.",
     plain_summary: {
@@ -410,28 +417,28 @@ CRITICAL TERMINATION TIMING: Cover crops must be terminated with glyphosate or r
         title: "Seed 3-Species Blend in October/November",
         description: "Drill 30 lbs/acre cereal rye, 8 lbs/acre crimson clover, and 2 lbs/acre Daikon radish after cash crop harvest.",
         caution: "Ensure seed-to-soil contact; do not broadcast without light harrowing.",
-        image_url: "/src/assets/images/soil_health_covercrop_1794072806988.jpg"
+        image_url: soilHealthImg
       },
       {
         step_number: 2,
         title: "Allow Radish Roots to Fracture Soil",
         description: "Let radish roots grow through the winter pan layer. First hard frost (below 25°F) will naturally winterkill radishes, leaving deep root channels.",
         caution: "Decomposing radishes will smell like sulfur for 7 to 10 days in early spring.",
-        image_url: "/src/assets/images/soil_health_covercrop_1794072806988.jpg"
+        image_url: soilHealthImg
       },
       {
         step_number: 3,
         title: "Terminate 3 to 4 Weeks Before Cash Crop",
         description: "Apply glyphosate or use a roller-crimper at rye heading stage, exactly 21 to 28 days before scheduled corn or sorghum planting.",
         caution: "Never delay termination within 14 days of planting.",
-        image_url: "/src/assets/images/soil_health_covercrop_1794072806988.jpg"
+        image_url: soilHealthImg
       },
       {
         step_number: 4,
         title: "Plant Directly Through the Mulch Mat",
         description: "Equip row units with sharp coulters and residue managers to slice through residue without hair-pinning seed into dry straw.",
         caution: "Check planter down-pressure to ensure proper 2-inch seed depth in heavy mulch.",
-        image_url: "/src/assets/images/soil_health_covercrop_1794072806988.jpg"
+        image_url: soilHealthImg
       }
     ],
     glossary_terms: [
@@ -478,7 +485,7 @@ WEATHER & MIGRATION: Late summer rain events accompanied by southerly winds trig
     has_technique: true,
     review_status: "reviewed",
     reviewer_name: "Dr. David Kerns, Statewide IPM Coordinator",
-    image_url: "/src/assets/images/grain_sorghum_crop_1794072807359.jpg",
+    image_url: sorghumImg,
     takeaway: "Older cheap bug sprays no longer kill Texas fall armyworms; check pastures after summer rain and spray only when you find 2 to 3 caterpillars per square foot.",
     spanish_takeaway: "Los insecticidas piretroides ya no eliminan al gusano cogollero por resistencia; fumigue con diamidas solo al encontrar 2 a 3 gusanos por pie cuadrado.",
     plain_summary: {
@@ -514,28 +521,28 @@ WEATHER & MIGRATION: Late summer rain events accompanied by southerly winds trig
         title: "Scout Early in the Morning",
         description: "Armyworms hide under thatch during hot sunshine. Walk fields before 9:00 AM or after 7:00 PM.",
         caution: "Do not scout in direct afternoon heat; worms burrow deep into soil cracks.",
-        image_url: "/src/assets/images/grain_sorghum_crop_1794072807359.jpg"
+        image_url: sorghumImg
       },
       {
         step_number: 2,
         title: "Drop a 1-Square-Foot Wire Frame",
         description: "Count all larvae inside a 12x12 inch square frame across 10 different pasture zones.",
         caution: "Notice worm size: worms under 1/2 inch are easily killed; worms over 1 inch are ready to pupate.",
-        image_url: "/src/assets/images/grain_sorghum_crop_1794072807359.jpg"
+        image_url: sorghumImg
       },
       {
         step_number: 3,
         title: "Evaluate Threshold (2 to 3 per Sq Ft)",
         description: "If counts average 2 to 3 active worms per square foot and hay is more than 2 weeks from cutting, schedule a spray.",
         caution: "If hay is within 3 days of cutting, harvest the forage early instead of spraying.",
-        image_url: "/src/assets/images/grain_sorghum_crop_1794072807359.jpg"
+        image_url: sorghumImg
       },
       {
         step_number: 4,
         title: "Apply Insecticide with High Water Volume",
         description: "Use at least 15 to 20 gallons of water per acre by ground rig with medium droplet nozzles to penetrate dense forage canopy.",
         caution: "Low water volume (5 gal/acre) fails to reach caterpillars feeding near the ground.",
-        image_url: "/src/assets/images/grain_sorghum_crop_1794072807359.jpg"
+        image_url: sorghumImg
       }
     ],
     glossary_terms: [
@@ -581,7 +588,7 @@ PLACEMENT IS CRITICAL: Placing the chemical more than 1.5 inches above or to the
 SITE-SPECIFIC MAPPING: Historical NDVI satellite imagery from previous cotton crops identified root rot patches with 94% spatial fidelity, allowing variable-rate prescription applications that reduced overall chemical expenditure by 43%.`,
     has_technique: true,
     review_status: "ai_draft",
-    image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg",
+    image_url: cottonIrrigationImg,
     takeaway: "Putting Topguard Terra right in the seed furrow at planting stops Texas root rot dead in its tracks and can save over 400 pounds of lint per acre.",
     spanish_takeaway: "Colocar Topguard Terra directamente en el surco de siembra frena la pudrición texana y protege más de 400 libras de fibra por acre.",
     plain_summary: {
@@ -615,28 +622,28 @@ SITE-SPECIFIC MAPPING: Historical NDVI satellite imagery from previous cotton cr
         title: "Map Root Rot Hotspots",
         description: "Use late-season aerial imagery or yield monitor data from previous cotton seasons to map distinct circular dead patches in your field.",
         caution: "Do not waste expensive chemical on clean acres that have no history of root rot.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       },
       {
         step_number: 2,
         title: "Install In-Furrow Delivery Tubes on Planter",
         description: "Mount liquid delivery tubes between the double-disk openers so fungicide drops into the open seed furrow directly with the seed.",
         caution: "Verify tubes are centered and not deflected by seed firmers.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       },
       {
         step_number: 3,
         title: "Calibrate at 6 to 8 fl oz/Acre in 5 Gal Water",
         description: "Calibrate pump rate to deliver labeled rate of flutriafol in at least 5 gallons of water carrier per acre for thorough furrow coverage.",
         caution: "Never apply without carrier liquid; dry formulations are ineffective for root rot.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       },
       {
         step_number: 4,
         title: "Close and Firm the Seed Trench",
         description: "Ensure press wheels seal the furrow firmly over the seed and chemical to prevent sun degradation and evaporation.",
         caution: "Avoid planting into muddy soil where trenches remain open.",
-        image_url: "/src/assets/images/cotton_irrigation_field_1794072806153.jpg"
+        image_url: cottonIrrigationImg
       }
     ],
     glossary_terms: [
@@ -676,7 +683,7 @@ EVAPORATIVE COOLING: Overhead micro-sprinklers activated during sunny winter aft
 SPRING FROST CAUTION: In seasons following low chill accumulation, bloom is protracted over 4 to 6 weeks, leaving green fruit vulnerable to late March radiational freezes. Keep wind machines and under-tree sprinklers ready.`,
     has_technique: false,
     review_status: "ai_draft",
-    image_url: "/src/assets/images/hero_texas_agriculture_1794072805147.jpg",
+    image_url: heroImg,
     takeaway: "Warmer Texas winters mean Hill Country growers should plant peach varieties needing fewer chill hours (450–650 hours) and use overhead sprinklers on warm winter afternoons.",
     spanish_takeaway: "Inviernos más cálidos en Texas indican sembrar duraznos que requieran menos horas frío (450–650 horas) y usar aspersores en tardes cálidas de invierno.",
     plain_summary: {
@@ -738,7 +745,7 @@ APPLICATION TIMING: Foliar mesquite spraying is strictly effective only when soi
     has_technique: true,
     review_status: "reviewed",
     reviewer_name: "Dr. Megan Clayton, Rangeland Extension Specialist",
-    image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg",
+    image_url: cattlePastureImg,
     takeaway: "Spraying honey mesquite and cedar trunks with a 15% triclopyr-in-diesel mix kills 92% of trees for under $30 an acre and doubles pasture grazing capacity.",
     spanish_takeaway: "Fumigar los troncos de mezquite y cedro con 15% de triclopir en diésel elimina el 92% de los árboles por menos de $30/acre y duplica el forraje.",
     plain_summary: {
@@ -773,28 +780,28 @@ APPLICATION TIMING: Foliar mesquite spraying is strictly effective only when soi
         title: "Mix 15% Triclopyr Ester in Diesel",
         description: "Mix 1.25 pints of triclopyr ester (Remedy Ultra or generic 4 lb/gal triclopyr) per gallon of diesel fuel or commercial basal bark oil. Add blue marker dye.",
         caution: "Wear nitrile gloves and eye protection; diesel damages ordinary latex gloves.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       },
       {
         step_number: 2,
         title: "Ensure Trunks and Bark are Completely Dry",
         description: "Check the base of the tree. Bark must be bone dry to absorb the oil carrier into the cambium layer.",
         caution: "Do not treat within 12 hours after rainfall or heavy morning dew.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       },
       {
         step_number: 3,
         title: "Spray Trunk from 12 Inches Down to Ground",
         description: "Use a small cone nozzle (5500-X1 or X2). Wet the trunk thoroughly all the way around from 12 to 14 inches high down to the ground line, puddling slightly at the root crown.",
         caution: "Spray all multiple stems on a tree—skipping one stem lets the root system survive.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       },
       {
         step_number: 4,
         title: "Leave Standing for 1 Year Before Clearing",
         description: "Do not cut or push the dead tree for at least 12 months so the herbicide completely translocates and kills the subterranean bud zone.",
         caution: "Cutting too early causes aggressive regrowth from sleeping root buds.",
-        image_url: "/src/assets/images/texas_cattle_pasture_1794072808863.jpg"
+        image_url: cattlePastureImg
       }
     ],
     glossary_terms: [

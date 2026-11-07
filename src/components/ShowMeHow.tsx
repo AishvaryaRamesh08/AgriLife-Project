@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Wrench, Video, AlertCircle, Sparkles, CheckCircle2, Play, RefreshCw } from 'lucide-react';
 import { Article, TechniqueStep } from '../types/research';
+import heroImg from '../assets/images/hero_texas_agriculture_1794072805147.jpg';
 
 interface ShowMeHowProps {
   article: Article;
@@ -205,7 +206,7 @@ export const ShowMeHow: React.FC<ShowMeHowProps> = ({
                   <div className="sm:w-48 shrink-0">
                     <div className="relative rounded-lg overflow-hidden border border-stone-300 bg-white shadow-2xs aspect-4/3 flex items-center justify-center">
                       <img
-                        src={st.image_url || article.image_url || "/src/assets/images/hero_texas_agriculture_1794072805147.jpg"}
+                        src={st.image_url || article.image_url || heroImg}
                         alt={`Diagram for Step ${st.step_number}: ${st.title}`}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
