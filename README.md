@@ -2,7 +2,7 @@
 
 Texas A&M AgriLife research made practical for Texas farmers and ranchers: plain-language article summaries, a 5-day county field forecast, "What this means for my farm" guides, step-by-step techniques, and a research chatbot grounded only in the article library. English and Spanish.
 
-**Live site:** https://deveshwar123.github.io/AgriLife-Project/
+**Live site:** https://aishvaryaramesh08.github.io/AgriLife-Project/
 
 Forked from [raywan10000/AgriLife-Project](https://github.com/raywan10000/AgriLife-Project) (built in Google AI Studio).
 
