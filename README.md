@@ -4,7 +4,7 @@ Texas A&M AgriLife research made practical for Texas farmers and ranchers: plain
 
 **Live site:** https://aishvaryaramesh08.github.io/AgriLife-Project/
 
-Forked from [raywan10000/AgriLife-Project](https://github.com/raywan10000/AgriLife-Project) (built in Google AI Studio).
+(team project, forked from Deveshwar123/AgriLife-Project)
 
 ## Two ways to run it
 
